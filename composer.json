@@ -1,0 +1,19 @@
+{
+    "name": "ricardo/php-skeleton",
+    "description": "PHP Skeleton",
+    "autoload": {
+        "psr-4": {
+            "PHPSkeleton\\" : "src/"
+        }
+    },
+    "require": {
+        "slim/slim": "3",
+        "doctrine/dbal": "^2.9"
+    },
+    "authors": [
+        {
+            "name": "Ricardo Morato Mateos",
+            "email": "ricardomoratomateos@gmail.com"
+        }
+    ]
+}

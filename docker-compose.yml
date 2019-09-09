@@ -1,0 +1,31 @@
+version: '3'
+services:
+  nginx:
+    build:
+        context: .
+        dockerfile: ./docker/nginx/Dockerfile
+    ports:
+        - "8080:80"
+    volumes:
+        - .:/app:cached
+        - ./docker/conf/nginx/site.conf:/etc/nginx/conf.d/default.conf:cached
+    links:
+        - php
+  php:
+    build:
+        context: .
+        dockerfile: ./docker/php/Dockerfile
+    volumes:
+        - .:/app:cached
+        - ./docker/conf/php/www.conf:/usr/local/etc/php-fpm.d/www.conf:cached
+    links:
+        - mysql
+  mysql:
+    image: mysql
+    volumes:
+        - ./conf:/conf/
+    environment:
+        MYSQL_DATABASE: 'build'
+        MYSQL_USER: 'test'
+        MYSQL_PASSWORD: 'test'
+        MYSQL_ROOT_PASSWORD: 'root'
